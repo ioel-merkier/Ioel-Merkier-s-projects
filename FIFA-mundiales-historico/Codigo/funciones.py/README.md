@@ -1,4 +1,3 @@
-[funciones.py](https://github.com/user-attachments/files/30279813/funciones.py)
 import csv
 
 #Funcion para leer archivos, 
@@ -272,49 +271,3 @@ def ordenar_des(lista, col):
             if lista[j][col] < lista[j+1][col]:
                 lista[j], lista[j+1] = lista[j+1],lista[j]
     return lista
-
-
-               
-      
-    
-    
-    
-
-
-            
-        
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-
-        
-        
-        
-
-        
-
-
-                
-
-
-
-                
-
-
-
-
-
-
-        
-        
-            
-        
-
-        
