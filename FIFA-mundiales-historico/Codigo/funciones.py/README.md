@@ -46,8 +46,7 @@ def ordenar_as(lista, col):
         for j in range(len(lista)-1-i):
             if lista[j][col] > lista[j+1][col]:
                 lista[j], lista[j+1] = lista[j+1],lista[j]
-    return lista
-        
+    return lista        
         
 #funcion extraer y ordenar (preparacion datos para funcion 1)
 def extraer_ordenar(nombre_archivo):
@@ -62,11 +61,10 @@ def extraer_ordenar(nombre_archivo):
     lista_reducida = ordenar_as(lista_reducida, 0)
     return lista_reducida
 
-# funcion para crear archivos de texto
+#funcion para crear archivos de texto
 def crear_archivo(arch, escritura):
     with open(arch, "w") as archivo_nuevo:
         archivo_nuevo.write(escritura)
-        
 
 ##################################
 
@@ -110,8 +108,7 @@ def extraccion_espacios(n):
         if n[i] != " ":
             res += n[i]
         i += 1
-    return res
-        
+    return res     
 
 def resultado_partido(partido, col):
     resultado = partido[col]
@@ -171,7 +168,6 @@ def posicion_rankinkg(pais, archivo_2):
         if line[0]==pais:
             return int(line[3])
        
-    
 #################################################
 
 def convert_minus(s):
@@ -185,7 +181,6 @@ def convert_minus(s):
     
     return res
     
-
 def filtro_fase_de_grupos(x):
     filtrada = []
     fases_de_grupo = ["groupstage", "secondgroupstage", "firstgroupstage", "secondround", "firstround", "groupstageplay-off"]
@@ -196,8 +191,7 @@ def filtro_fase_de_grupos(x):
             filtrada.append(line)
     
     return filtrada
-        
-        
+             
 def ordenar_fecha_des(lista, col):
     for i in range(len(lista)):
         for j in range(len(lista)-1-i):
@@ -225,10 +219,8 @@ def confederacion(pais, archivo_2):
         line[0] = convert_minus(line[0])
         if line[0] == pais:
             return line[2]
-        
-        
+            
 ##############################################
-
 
 def lista_capitanes_pais(x):
     capitanes_pais  =[]
