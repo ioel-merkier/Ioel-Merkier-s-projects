@@ -4,8 +4,6 @@ import csv
 archivo_1 = "partidos.csv"
 archivo_2 = "ranking_fifa.csv"
 
-
-
 def promedio_asistentes(archivo_1, archivo_2):
     lista_reducida = extraer_ordenar(archivo_1)
     if lista_reducida == None:
