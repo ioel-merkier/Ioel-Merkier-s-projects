@@ -21,7 +21,7 @@ CREATE  TABLE PADRINO (
 	fec_nac              date      NULL,
 	telefono             varchar(max)      NOT NULL,
 	mail                 varchar(max)      NOT NULL,
-	monto_total_donado   int      NULL,
+	monto_total_donado   int     NOT NULL DEFAULT 0,
 	sexo                 varchar(1)      NOT NULL,
 	fec_alta             date      NOT NULL,
 	fec_baja             date      NULL,
@@ -46,7 +46,7 @@ GO
 CREATE  TABLE TIPO_DE_EMPLEADO ( 
 	id_tipo_de_empleado  int      NOT NULL,
 	descripcion          varchar(max)      NOT NULL,
-	es_voluntario        bit      NULL,
+	es_voluntario        bit      NOT NULL DEFAULT 0,
 	rol                  varchar(max)      NOT NULL,
 	CONSTRAINT pk_TIPO_DE_EMPLEADO PRIMARY KEY  ( id_tipo_de_empleado ) 
  );
@@ -104,14 +104,16 @@ GO
 CREATE  TABLE TURNO_POR_EMPLEADO ( 
 	id_empleado          int      NOT NULL,
 	id_turno             int      NOT NULL,
+	fecha_desde	date	NOT NULL,
+	fecha_hasta	date	NULL,
 	CONSTRAINT pk_TURNO_POR_EMPLEADO PRIMARY KEY  ( id_empleado, id_turno ) 
  );
 GO
 
 CREATE  TABLE VISITA ( 
 	id_visita            int      NOT NULL,
-	fec_y_hora_entrada   datetime      NOT NULL,
-	fec_y_hora_salida    datetime      NULL,
+	fec_y_hora_entrada   smalldatetime      NOT NULL,
+	fec_y_hora_salida    smalldatetime      NULL,
 	id_visitante         int      NOT NULL,
 	id_empleado          int      NOT NULL,
 	CONSTRAINT pk_VISITA PRIMARY KEY  ( id_visita ) 
@@ -127,32 +129,28 @@ CREATE  TABLE ANIMAL (
 	fec_adopcion         date      NULL,
 	fec_fallecimiento    date      NULL,
 	descripcion_caracter varchar(max)      NULL,
-	cant_donaciones      int      NULL,
-	cant_visitas         int      NULL,
-	cant_revisiones_medicas int      NULL,
+	cant_donaciones      int      NOT NULL DEFAULT 0,
+	cant_visitas         int     NOT NULL DEFAULT 0,
+	cant_revisiones_medicas int      NOT NULL DEFAULT 0,
 	id_tipo_animal       int      NOT NULL,
 	id_raza              int      NOT NULL,
 	id_padre             int      NULL,
-	CONSTRAINT pk_Entity PRIMARY KEY  ( id_animal ) 
+	CONSTRAINT pk_ANIMAL PRIMARY KEY  ( id_animal ) 
  );
-GO
-
-CREATE UNIQUE  INDEX unq_id_padre ON ANIMAL ( id_padre );
 GO
 
 CREATE  TABLE PADRINO_POR_ANIMAL ( 
 	id_padrino           int      NOT NULL,
 	id_animal            int      NOT NULL,
+	fecha_desde	date	NOT NULL,
+	fecha_hasta	date	NULL,
 	CONSTRAINT pk_id_padrino PRIMARY KEY  ( id_padrino, id_animal ) 
  );
 GO
 
-CREATE UNIQUE  INDEX unq_id_animal_001 ON PADRINO_POR_ANIMAL ( id_padrino );
-GO
-
 CREATE  TABLE REVISION_MEDICA ( 
 	id_visita_medica     int      NOT NULL,
-	fec_y_hora           datetime      NOT NULL,
+	fec_y_hora           smalldatetime      NOT NULL,
 	diagnostico          varchar(max)      NOT NULL,
 	id_animal            int      NOT NULL,
 	id_empleado          int      NOT NULL,
@@ -170,7 +168,7 @@ CREATE  TABLE VISITA_POR_ANIMAL (
 GO
 
 CREATE  TABLE ACCION_POR_REVISION ( 
-	fec                  date      NOT NULL,
+	fec_accion                  smalldatetime      NOT NULL,
 	observaciones        varchar(max)      NULL,
 	id_accion            int      NOT NULL,
 	id_visita_medica     int      NOT NULL,
@@ -248,5 +246,4 @@ GO
 
 ALTER TABLE VISITA_POR_ANIMAL ADD CONSTRAINT fk_VISITA_POR_ANIMAL_RESULTADO_VISITA FOREIGN KEY ( id_resultado ) REFERENCES RESULTADO_VISITA( id_resultado );
 GO
-
 
