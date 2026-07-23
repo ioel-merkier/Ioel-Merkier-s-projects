@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+grandes_leyendas.txt
+.DS_Store
