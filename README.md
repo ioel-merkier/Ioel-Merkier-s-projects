@@ -1,2 +1,2 @@
 # Ioel-Merkier-s-projects
-Portfolio showcasing Data Analytics and Data Science projects built with Python, SQL Server, Power BI, and Excel.
+Portfolio de proyectos de análisis de datos desarrollados con Python, SQL Server, Power BI, Excel y Data Warehousing.
